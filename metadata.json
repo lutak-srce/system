@@ -5,7 +5,7 @@
   "summary": "Manages operating system tunables.",
   "license": "Apache-2.0",
   "source": "https://github.com/lutak-srce/system",
-  "project_page": "https://github.com/lutak-srce/system"
+  "project_page": "https://github.com/lutak-srce/system",
   "dependencies": [],
   "operatingsystem_support": [
     {
