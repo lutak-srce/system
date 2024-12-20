@@ -7,7 +7,7 @@ class system::iptables (
 
   include ::rsyslog
 
-  case $::operatingsystemrelease {
+  case $facts['os']['release']['full'] {
     default: {}
     /^6.*/: {
       file { '/etc/rsyslog.d/netfilter.conf':
