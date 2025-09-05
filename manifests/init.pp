@@ -4,16 +4,16 @@
 class system {
 
   # load hosts, sysctl, sysfs, limits settings
-  create_resources(host,       hiera_hash('hosts', {}))
-  create_resources('::sysfs',  hiera_hash('sysfs', {}))
-  create_resources('::sysctl', hiera_hash('sysctl',{}))
-  create_resources('::limits', hiera_hash('limits',{}))
-  create_resources('::selinux::module', hiera_hash('selinux::modules',{}))
-  create_resources('::rsyslog::remote', hiera_hash('rsyslog::remotes',{}))
+  create_resources( host, lookup( 'hosts', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, {}))
+  create_resources( '::sysfs', lookup( 'sysfs', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, {}))
+  create_resources( '::sysctl', lookup( 'sysctl', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, {}))
+  create_resources( '::limits', lookup( 'limits', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, {}))
+  create_resources( '::selinux::module', lookup( 'selinux::modules', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, {}))
+  create_resources( '::rsyslog::remote', lookup( 'rsyslog::remotes', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, {}))
 
   # selinux settings
-  create_resources('selboolean', hiera_hash('selinux::selbooleans',{}))
-  create_resources('selmodule',  hiera_hash('selinux::selmodules', {}))
+  create_resources( 'selboolean', lookup( 'selinux::selbooleans', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, {}))
+  create_resources( 'selmodule', lookup( 'selinux::selmodules', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, {}))
 
   # wheel group container
   group { 'wheel': ensure => present }
